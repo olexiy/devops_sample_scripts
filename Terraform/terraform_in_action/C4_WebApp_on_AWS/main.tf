@@ -4,13 +4,16 @@ module "autoscaling" {
     ssh_keypair     = var.ssh_keypair
 
     vpc             = module.networking.vpc
-    sg              = module.networking.db_sg
+    sg              = module.networking.sg
     db_config       = module.database.db_config
 }
 
 module "database"{
     source      = "./modules/database"
     namespace   = var.namespace
+
+    vpc         = module.networking.vpc
+    sg          = module.networking.sg
 }
 
 module "networking" {
