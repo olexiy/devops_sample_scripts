@@ -1,1 +1,1 @@
-Some Docker samples based on the Udemy Course "Docker & Kubernetes: The Practical Guide" by Sebastian Schwarzmüller
+Some Docker samples based on the Udemy Course "Docker & Kubernetes: The Practical Guide" by *Sebastian Schwarzmüller*

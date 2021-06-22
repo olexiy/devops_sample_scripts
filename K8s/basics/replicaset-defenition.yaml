@@ -12,8 +12,8 @@ spec:
       labels:
         app: myapp
         type: front-end
-    spec:      
-        containers:
+    spec:
+      containers:
         - name: nginx-container
           image: nginx
   replicas: 3
