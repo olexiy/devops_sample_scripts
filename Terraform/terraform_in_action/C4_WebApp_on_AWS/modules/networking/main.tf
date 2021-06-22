@@ -5,7 +5,7 @@ module "vpc" {
     version                         = "2.64.0"
     name                            = "${var.namespace}-vpc"
     cidr                            = "10.0.0.0/16"
-    azs                             = "data.aws_availability_zones.available.names"
+    azs                             = data.aws_availability_zones.available.names
     private_subnets                 = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
     public_subnets                  = ["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"]
     database_subnets                = ["10.0.21.0/24", "10.0.22.0/24", "10.0.23.0/24"]
@@ -29,7 +29,7 @@ module "webserver_sg" {
     ingress_rules = [
         {
             port        = 8080
-            security_groups = [module.lb_sg.sequrity_group_id]
+            security_groups = [module.lb_sg.security_group.id]
         },
         {
             port        = 22
@@ -43,6 +43,6 @@ module "db_sg" {
   vpc_id = module.vpc.vpc_id
   ingress_rules = [{
     port            = 3306
-    security_groups = [module.websvr_sg.security_group.id]
+    security_groups = [module.webserver_sg.security_group.id]
   }]
 }
