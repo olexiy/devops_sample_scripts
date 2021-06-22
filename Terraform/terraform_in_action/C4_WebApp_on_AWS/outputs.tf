@@ -1,4 +1,5 @@
 output "db_password" {
+    sensitive = true
     value = module.database.db_config.password
 }
 

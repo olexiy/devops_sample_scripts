@@ -16,7 +16,7 @@ data "aws_ami" "ubuntu" {
     most_recent = true
     filter {
         name        = "name"
-        values      = ["ubuntu/images/hvm-ssd/ubuntu-bionic-18.0.4-amd64-server-*"]
+        values      = ["ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*"]
     }
     owners = [ "099720109477" ]
 }
@@ -34,10 +34,10 @@ resource "aws_launch_template" "webserver" {
 }   
 
 resource "aws_autoscaling_group" "webserver" {
-  name                  = "${var.namespace-asg}"
+  name                  = "${var.namespace}-asg"
   min_size              = 1
   max_size              = 3
-  vpc_zone_identifier   = var.vpc.private_subnet
+  vpc_zone_identifier   = var.vpc.private_subnets
   target_group_arns     = module.alb.target_group_arns
   launch_template {
       id        = aws_launch_template.webserver.id
