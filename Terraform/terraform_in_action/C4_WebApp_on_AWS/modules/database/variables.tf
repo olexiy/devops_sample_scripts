@@ -1,5 +1,5 @@
 variable "namespace" {
-  type = stiring
+  type = string
 }
 
 variable "vpc" {
